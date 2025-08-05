@@ -1,0 +1,18 @@
+# === FRONTEND ===
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.DS_Store
+
+# === BACKEND ===
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/.DS_Store
+
+# === GENERAL ===
+*.log
+.env
+.DS_Store
+*.zip
+*.tar
