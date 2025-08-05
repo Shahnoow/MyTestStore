@@ -1,18 +1,15 @@
 const axios = require("axios");
 const Product = require("../models/productModel");
 
-// ✅ Get product by ID
 exports.getProductById = async (req, res) => {
   const id = req.params.id;
 
   try {
-    // ✅ Fetch title from external API
     const productRes = await axios.get(
       `https://fakestoreapi.com/products/${id}`
     );
     const productTitle = productRes.data.title;
 
-    // ✅ Fetch price from local DB
     const product = await Product.findOne({ id: Number(id) });
 
     if (!product) {
@@ -21,7 +18,6 @@ exports.getProductById = async (req, res) => {
         .json({ error: "Price info not found in local DB" });
     }
 
-    // ✅ Combine and send response
     res.json({
       id: Number(id),
       title: productTitle,
@@ -36,7 +32,6 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// ✅ Update product price
 exports.updateProductPrice = async (req, res) => {
   const id = req.params.id;
   const { value, currency_code } = req.body.current_price;
@@ -45,7 +40,7 @@ exports.updateProductPrice = async (req, res) => {
     const updatedProduct = await Product.findOneAndUpdate(
       { id: Number(id) },
       { current_price: { value, currency_code } },
-      { new: true, upsert: true } // upsert creates if not exists
+      { new: true, upsert: true }
     );
 
     res.json({
