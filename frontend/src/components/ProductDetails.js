@@ -12,7 +12,7 @@ const ProductDetails = {
     }
   },
 
-  productCard: ({ product }) => (
+  ProductCard: ({ product }) => (
     <div className="card mb-4">
       <div className="card-body">
         <h5 className="card-title">Title: {product.title}</h5>

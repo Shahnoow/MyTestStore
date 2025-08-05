@@ -7,6 +7,10 @@ function App() {
   const [productId, setProductId] = useState("");
   const [product, setProduct] = useState(null);
 
+  const handleGetProduct = () => {
+    ProductDetails.fetchProduct(productId, setProduct);
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="mb-4 text-center">Product Price Dashboard</h2>
@@ -19,17 +23,14 @@ function App() {
           value={productId}
           onChange={(e) => setProductId(e.target.value)}
         />
-        <button
-          className="btn btn-primary mt-2"
-          onClick={() => ProductDetails.fetchProduct(productId, setProduct)}
-        >
+        <button className="btn btn-primary mt-2" onClick={handleGetProduct}>
           Get Product
         </button>
       </div>
 
       {product && (
         <>
-          <ProductDetails.productCard product={product} />
+          <ProductDetails.ProductCard product={product} />
           <UpdatePriceForm productId={productId} setProduct={setProduct} />
         </>
       )}

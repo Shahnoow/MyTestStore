@@ -8,7 +8,7 @@ function UpdatePriceForm({ productId, setProduct }) {
   const handleUpdate = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/products/${productId}`, // <-- added /api here
+        `http://localhost:5000/api/products/${productId}`,
         {
           current_price: {
             value: parseFloat(price),
